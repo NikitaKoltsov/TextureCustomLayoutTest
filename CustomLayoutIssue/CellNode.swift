@@ -34,11 +34,12 @@ class CellNode: ASCellNode {
     
     let contentNode = ASDisplayNode()
     let textNode = ASTextNode()
+    let index: Int
     
     // MARK: Lifecycle
     
     init(model: CellModel, index: Int) {
-        
+        self.index = index
         
         super.init()
         configureSubnodes()
@@ -48,6 +49,11 @@ class CellNode: ASCellNode {
                                            NSAttributedString.Key.foregroundColor: UIColor.black])
     }
     
+    
+    override func layout() {
+        super.layout()
+        print("Layout cell with number: \(index)")
+    }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let centerSpec = ASCenterLayoutSpec(horizontalPosition: .center, verticalPosition: .center, sizingOption: [], child: textNode)
